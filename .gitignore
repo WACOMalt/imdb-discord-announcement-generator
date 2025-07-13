@@ -1,8 +1,14 @@
 # Build outputs
 build/
 
-# Generated movie announcement files
-*.txt
+# Generated movie announcement files (exclude movie titles as .txt files)
+# Common movie title patterns to ignore
+*[Mm]ovie*.txt
+*[Ff]ilm*.txt
+*[Tt]itle*.txt
+# But include our important documentation files
+!README.txt
+!AI_AGENT_INFO.txt
 
 # Downloaded HTML files
 *.html

@@ -1,0 +1,83 @@
+# Discord Movie Announcement Generator - AI Agent Reference
+
+## PROJECT OVERVIEW
+This project generates Discord-formatted movie announcements by fetching data from IMDB and YouTube. It's a PowerShell script compiled to a Windows EXE for easy distribution.
+
+## CORE FUNCTIONALITY
+- Fetches movie data from IMDB using movie ID (e.g., tt0076162)
+- Searches YouTube for movie trailers
+- Generates Discord announcements with timestamps, emojis, and formatting
+- Supports two cinema themes: "Spooky Cinema" (with Halloween emojis) and "Obsolete Cinema" (clean)
+- Flexible time input (12/24 hour, with/without AM/PM)
+- Smart defaults: Obsolete Cinema, 8:30 PM
+- Outputs formatted text file ready for Discord
+
+## KEY FILES
+- `MovieAnnouncementGenerator.ps1` - Main source code (PowerShell)
+- `build.ps1` - Compiles PS1 to EXE using PS2EXE
+- `release.ps1` - Creates versioned release packages
+- `build/` - Contains compiled EXE files
+- `releases/` - Contains versioned release packages
+- `.gitignore` - Excludes build artifacts and temp files
+
+## BUILD PROCESS
+1. Edit `MovieAnnouncementGenerator.ps1` for changes
+2. Run `.\build.ps1 -Version "X.Y.Z"` to compile
+3. Run `.\release.ps1 -Version "X.Y.Z"` to package
+4. Commit and push to GitHub
+
+## DEVELOPMENT WORKFLOW
+```powershell
+# Build new version
+.\build.ps1 -Version "1.0.2"
+
+# Create release package
+.\release.ps1 -Version "1.0.2"
+
+# Git workflow
+git add .
+git commit -m "Release v1.0.2 - [description]"
+git push origin main
+```
+
+## SCRIPT STRUCTURE
+- Parse-Time function: Handles flexible time input formats
+- Get-UserInput function: Validates user input with defaults
+- IMDB data extraction: Uses regex to parse HTML for movie details
+- YouTube search: Finds first video result for "[title] trailer"
+- Discord formatting: Creates properly formatted announcement with timestamps
+
+## DEPENDENCIES
+- PowerShell 5.1+
+- PS2EXE module for compilation
+- Internet connection (IMDB/YouTube API calls)
+- Windows OS (for EXE execution)
+
+## OUTPUT FORMAT
+Discord announcement includes:
+- Cinema branding line (with/without emojis)
+- Movie title with Discord timestamp
+- Description in quotes
+- Director, cast, runtime, rating
+- Event details (when/where)
+- Trailer link and IMDB links
+
+## COMMON TASKS FOR AI AGENTS
+1. **Version Updates**: Modify version numbers in build.ps1 and release.ps1
+2. **Feature Additions**: Edit MovieAnnouncementGenerator.ps1, then rebuild
+3. **Bug Fixes**: Update source code, increment patch version, rebuild/release
+4. **Cinema Theme Changes**: Modify $cinemaEmojis variables in main script
+5. **Time Format Updates**: Modify Parse-Time function
+6. **Output Format Changes**: Update the $announcement here-string
+
+## TESTING
+Run the EXE manually with test movie IDs:
+- tt0076162 (Hausu - 1977 horror)
+- tt2326554 (A Girl Walks Home Alone at Night - 2014 horror)
+- Any valid IMDB tt ID
+
+Verify output file format and Discord timestamp accuracy.
+
+## VERSION HISTORY
+- v1.0.0: Initial release with basic functionality
+- v1.0.1: Fixed blank line output and cinema name display issues
