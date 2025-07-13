@@ -1,0 +1,19 @@
+# Build outputs
+build/
+
+# Generated movie announcement files
+*.txt
+
+# Downloaded HTML files
+*.html
+
+# Temporary files
+temp_*
+
+# Windows thumbnail cache files
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# PowerShell execution policy bypass files
+*.ps1.tmp
